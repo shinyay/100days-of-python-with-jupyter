@@ -8,6 +8,4 @@ services:
       PYTHONPATH: /workspace
     volumes:
       - ..:/workspace
-    ports:
-      - 8888:8888
     command: sleep infinity

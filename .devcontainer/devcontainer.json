@@ -1,11 +1,9 @@
 {
-	"name": "devcontainr_python3",
-	//"dockerFile": "Dockerfile",
+	"name": "100days_of_python",
 	"dockerComposeFile": "compose.yaml",
 	"service": "jupyter",
 	"workspaceFolder": "/workspace",
 	"shutdownAction": "stopCompose",
-	"forwardPorts": [8888],
 	"customizations": {
 		"vscode": {
 			"extensions": [
