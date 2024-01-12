@@ -1,4 +1,4 @@
-# Name
+# 100 Days of Python
 
 Overview
 
