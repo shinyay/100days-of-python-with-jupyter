@@ -24,6 +24,7 @@ You can start Jupyter by following these steps:
 1. Open Command Pallette by `F1``
 2. Select `> Dev Containers: Reopen in Container`
 3. Open Command Pallette by `F1` on the Remote side
+4. Select `> Create: New Jupyter Notebook`
 
 ## Installation
 
