@@ -1,7 +1,9 @@
 # 100 Days of Python with Jupyter
 
 🐍 Exciting News: Embarking on a new coding adventure with #100DaysOfCode in Python! 🚀 As a seasoned Java and Kotlin Developer, I'm diving into the world of Python to expand my horizons and embrace its versatility.
+
 🌐 Join me on this 100-day journey as I explore the syntax, libraries, and quirks of Python, all while building exciting projects and honing my coding skills.
+
 🖥️ Let's make every day count and turn this Python exploration into a remarkable coding odyssey!
 
 ## Description
