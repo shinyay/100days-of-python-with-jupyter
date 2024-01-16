@@ -7,4 +7,4 @@ RUN apt-get update && \
     pip install --upgrade pip
 
 # Install Basic Packages
-RUN pip install ipykernel jupyter
+RUN pip install ipykernel jupyter termcolor
