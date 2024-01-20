@@ -1,2 +1,6 @@
 Hello
 Python
+
+Hello $name,
+$body
+Have a nice day!
