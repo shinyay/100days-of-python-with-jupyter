@@ -5,3 +5,6 @@ class Robot:
         self.name = name
         self.user_name = user_name
         self.speak_color = speak_color
+    
+    def hello(self):
+        while True:
