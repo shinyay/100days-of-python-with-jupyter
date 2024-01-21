@@ -11,3 +11,9 @@ class Robot:
     def hello(self):
         while True:
             template = console.get_template('hello.txt', self.speak_color)
+            user_name = input(template.substitute(
+                {'robot_name': self.name}
+            ))
+            if user_name:
+                self.user_name = user_name.title()
+                break
