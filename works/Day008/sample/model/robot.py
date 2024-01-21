@@ -1,3 +1,5 @@
+from sample.view import console
+
 DEFAULT_ROBOT_NAME = '11-O'
 
 class Robot:
@@ -8,3 +10,4 @@ class Robot:
     
     def hello(self):
         while True:
+            template = console.get_template('hello.txt', self.speak_color)
