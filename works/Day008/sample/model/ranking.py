@@ -67,3 +67,7 @@ class RankingModel(CsvModel):
             if name in not_list:
                 continue
             return name
+
+    def increment(self, name):
+        self.data[name.title()] += 1
+        self.save()
