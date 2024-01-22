@@ -42,3 +42,15 @@ class RankingModel(CsvModel):
                 self.data[row[RANKING_COLUMN_NAME]] = int(
                     row[RANKING_COLUMN_COUNT])
         return self.data
+
+    def save(self):
+        # TODO (jsakai) Use locking mechanism for avoiding dead lock issue
+        with open(self.csv_file, 'w+') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=self.column)
+            writer.writeheader()
+
+            for name, count in self.data.items():
+                writer.writerow({
+                    RANKING_COLUMN_NAME: name,
+                    RANKING_COLUMN_COUNT: count
+                })
