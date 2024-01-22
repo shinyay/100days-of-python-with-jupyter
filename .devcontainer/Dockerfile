@@ -7,4 +7,5 @@ RUN apt-get update && \
     pip install --upgrade pip
 
 # Install Basic Packages
-RUN pip install ipykernel jupyter termcolor
+RUN pip install ipykernel jupyter termcolor \
+                pycodestyle flake8 pylint
