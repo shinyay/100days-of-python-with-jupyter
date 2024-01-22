@@ -21,3 +21,16 @@ class RankingModel(CsvModel):
         self.column = [RANKING_COLUMN_NAME, RANKING_COLUMN_COUNT]
         self.data = collections.defaultdict(int)
         self.load_data()
+    
+    def get_csv_file_path(self):
+        csv_file_path = None
+        try:
+            import settings
+            if settings.CSV_FILE_PATH:
+                csv_file_path = settings.CSV_FILE_PATH
+        except ImportError:
+            pass
+
+        if not csv_file_path:
+            csv_file_path = RANKING_CSV_FILE_PATH
+        return csv_file_path
