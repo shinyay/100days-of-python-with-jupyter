@@ -55,3 +55,16 @@ class RestaurantRobot(Robot):
                 if not new_recommend_restaurant:
                     break
                 will_recommend_restaurants.append(new_recommend_restaurant)
+
+    @_hello_decorator
+    def ask_user_favorite(self):
+        while True:
+            template = console.get_template(
+                'which_restaurant.txt', self.speak_color)
+            restaurant = input(template.substitute({
+                'robot_name': self.name,
+                'user_name': self.user_name,
+            }))
+            if restaurant:
+                self.ranking_model.increment(restaurant)
+                break
