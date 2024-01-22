@@ -68,3 +68,11 @@ class RestaurantRobot(Robot):
             if restaurant:
                 self.ranking_model.increment(restaurant)
                 break
+
+    @_hello_decorator
+    def thank_you(self):
+        template = console.get_template('good_by.txt', self.speak_color)
+        print(template.substitute({
+            'robot_name': self.name,
+            'user_name': self.user_name,
+        }))
