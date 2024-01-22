@@ -17,3 +17,8 @@ class Robot:
             if user_name:
                 self.user_name = user_name.title()
                 break
+
+class RestaurantRobot(Robot):
+    def __init__(self, name=DEFAULT_ROBOT_NAME):
+        super().__init__(name = name)
+        self.ranking_model = ranking
