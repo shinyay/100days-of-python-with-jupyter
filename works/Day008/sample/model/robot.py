@@ -23,3 +23,10 @@ class RestaurantRobot(Robot):
     def __init__(self, name=DEFAULT_ROBOT_NAME):
         super().__init__(name = name)
         self.ranking_model = ranking.RankingModel()
+    
+    def _hello_decorator(func):
+        def wrapper(self):
+            if not self.user_name:
+                self.hello()
+            return func(self)
+        return wrapper
