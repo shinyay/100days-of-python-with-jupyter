@@ -1,4 +1,5 @@
 from sample.view import console
+from sample.model import ranking
 
 DEFAULT_ROBOT_NAME = '11-O'
 
@@ -21,4 +22,4 @@ class Robot:
 class RestaurantRobot(Robot):
     def __init__(self, name=DEFAULT_ROBOT_NAME):
         super().__init__(name = name)
-        self.ranking_model = ranking
+        self.ranking_model = ranking.RankingModel()
