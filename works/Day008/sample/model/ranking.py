@@ -34,3 +34,11 @@ class RankingModel(CsvModel):
         if not csv_file_path:
             csv_file_path = RANKING_CSV_FILE_PATH
         return csv_file_path
+    
+    def load_data(self):
+        with open(self.csv_file, 'r+') as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                self.data[row[RANKING_COLUMN_NAME]] = int(
+                    row[RANKING_COLUMN_COUNT])
+        return self.data
