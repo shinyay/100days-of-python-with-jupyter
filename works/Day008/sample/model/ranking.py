@@ -54,3 +54,16 @@ class RankingModel(CsvModel):
                     RANKING_COLUMN_NAME: name,
                     RANKING_COLUMN_COUNT: count
                 })
+
+    def get_most_popular(self, not_list=None):
+        if not_list is None:
+            not_list = []
+
+        if not self.data:
+            return None
+
+        sorted_data = sorted(self.data, key=self.data.get, reverse=True)
+        for name in sorted_data:
+            if name in not_list:
+                continue
+            return name
