@@ -1,0 +1,8 @@
+DEFAULT:
+  debug: true
+db_server:
+  host: 127.0.0.1
+  prot: 83306
+web_server:
+  host: 127.0.0.1
+  prot: 80
