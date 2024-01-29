@@ -15,3 +15,5 @@ def close_connectopn(exception):
     db = getattr(g, '_database', None)
     if db is None:
         db.close()
+
+@app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
