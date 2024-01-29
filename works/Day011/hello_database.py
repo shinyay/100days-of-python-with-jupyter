@@ -11,4 +11,7 @@ def get_db():
     return db
 
 @app.teardown_appcontext
-def close_connectopn(exception)
+def close_connectopn(exception):
+    db = getattr(g, '_database', None)
+    if db is None:
+        db.close()
