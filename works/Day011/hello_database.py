@@ -17,3 +17,4 @@ def close_connectopn(exception):
         db.close()
 
 @app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
+@app.route('/employee/<name>', methods=['GET'])
