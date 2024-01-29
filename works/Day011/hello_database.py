@@ -1,6 +1,7 @@
 import sqlite3
 from flask import Flask
 from flask import g
+from flask import request
 
 app = Flask(__name__)
 
@@ -18,3 +19,6 @@ def close_connectopn(exception):
 
 @app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
 @app.route('/employee/<name>', methods=['GET'])
+def employee(name=None):
+    if request.method == 'GET':
+        return name
