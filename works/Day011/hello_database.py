@@ -24,6 +24,9 @@ def employee(name=None):
     #     return name
     db = get_db()
     curs = db.cursor()
+    curs.execute(
+        'CREATE TABLE IF NOT EXISTS persons(id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING)'
+    )
 
 def main():
     app.debug = True
