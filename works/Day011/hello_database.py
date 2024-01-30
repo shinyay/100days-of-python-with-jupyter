@@ -27,6 +27,7 @@ def employee(name=None):
     curs.execute(
         'CREATE TABLE IF NOT EXISTS persons(id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING)'
     )
+    db.commit()
 
 def main():
     app.debug = True
