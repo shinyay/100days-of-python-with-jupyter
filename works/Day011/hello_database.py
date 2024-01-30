@@ -6,10 +6,26 @@ from flask import request
 app = Flask(__name__)
 
 def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect('test_sqlite.db')
-    return db
+    db = get_db()
+    curs = db.cursor()
+    curs.execute(
+        'CREATE TABLE IF NOT EXISTS persons( '
+        'id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING)'
+    )
+    db.commit()
+
+    name = request.values.get('name', name)
+
+    if request.method == 'GET':
+        curs.execute(f'SELECT * FROM persons WHERE name = "{name}"')
+        person = curs.fetchone()
+        if not person:
+            return "No", 404
+        user_id, name = person
+        return f'{user_id}:{name}', 200
+
+
+    curs.close()
 
 @app.teardown_appcontext
 def close_connection(exception):
