@@ -12,9 +12,9 @@ def get_db():
     return db
 
 @app.teardown_appcontext
-def close_connectopn(exception):
+def close_connection(exception):
     db = getattr(g, '_database', None)
-    if db is None:
+    if db is not None:
         db.close()
 
 @app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
