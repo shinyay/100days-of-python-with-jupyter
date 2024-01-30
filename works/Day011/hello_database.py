@@ -5,7 +5,14 @@ from flask import request
 
 app = Flask(__name__)
 
+### Connect Database
 def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect('hello_sqlite.db')
+    return db
+
+def employee():
     db = get_db()
     curs = db.cursor()
     curs.execute(
