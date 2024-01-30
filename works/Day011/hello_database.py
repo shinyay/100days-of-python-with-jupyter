@@ -20,8 +20,9 @@ def close_connection(exception):
 @app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
 @app.route('/employee/<name>', methods=['GET'])
 def employee(name=None):
-    if request.method == 'GET':
-        return name
+    # if request.method == 'GET':
+    #     return name
+    db = get_db()
 
 def main():
     app.debug = True
