@@ -22,3 +22,10 @@ def close_connection(exception):
 def employee(name=None):
     if request.method == 'GET':
         return name
+
+def main():
+    app.debug = True
+    app.run()
+
+if __name__ == '__main__':
+    main()
