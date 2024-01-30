@@ -19,6 +19,8 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
+@app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
+@app.route('/employee/<name>', methods=['GET'])
 def employee():
     db = get_db()
     curs = db.cursor()
@@ -56,21 +58,6 @@ def employee():
         return f'deleted {name}', 200
 
     curs.close()
-
-
-
-@app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
-@app.route('/employee/<name>', methods=['GET'])
-def employee(name=None):
-    db = get_db()
-    curs = db.cursor()
-    curs.execute(
-        'CREATE TABLE IF NOT EXISTS persons(id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING)'
-    )
-    db.commit()
-
-    if request.method == 'GET':
-        return name
 
 def main():
     app.debug = True
