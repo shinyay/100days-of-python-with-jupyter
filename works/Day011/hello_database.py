@@ -29,6 +29,13 @@ def get_db():
         db.commit()
         return f'created {name}', 201
 
+    if request.method == 'PUT':
+        new_name = request.values['new_name']
+        curs.execute(f'UPDATE persons set name = "{new_name}" '
+                     f'WHERE name = "{name}"')
+        db.commit()
+        return f'updated {name}: {new_name}', 200
+
 
 
     curs.close()
