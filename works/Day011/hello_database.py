@@ -36,7 +36,10 @@ def get_db():
         db.commit()
         return f'updated {name}: {new_name}', 200
 
-
+    if request.method == 'DELETE':
+        curs.execute(f'DELETE from persons WHERE name = "{name}"')
+        db.commit()
+        return f'deleted {name}', 200
 
     curs.close()
 
