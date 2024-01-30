@@ -24,6 +24,12 @@ def get_db():
         user_id, name = person
         return f'{user_id}:{name}', 200
 
+    if request.method == 'POST':
+        curs.execute(f'INSERT INTO persons(name) values("{name}")')
+        db.commit()
+        return f'created {name}', 201
+
+
 
     curs.close()
 
