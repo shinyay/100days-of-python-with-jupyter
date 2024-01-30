@@ -23,6 +23,7 @@ def employee(name=None):
     # if request.method == 'GET':
     #     return name
     db = get_db()
+    curs = db.cursor()
 
 def main():
     app.debug = True
