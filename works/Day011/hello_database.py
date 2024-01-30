@@ -12,6 +12,13 @@ def get_db():
         db = g._database = sqlite3.connect('hello_sqlite.db')
     return db
 
+### Close Database
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
 def employee():
     db = get_db()
     curs = db.cursor()
@@ -50,11 +57,7 @@ def employee():
 
     curs.close()
 
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+
 
 @app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
 @app.route('/employee/<name>', methods=['GET'])
