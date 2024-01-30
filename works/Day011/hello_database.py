@@ -21,7 +21,7 @@ def close_connection(exception):
 
 @app.route('/employee', methods=['POST', 'PUT', 'DELETE'])
 @app.route('/employee/<name>', methods=['GET'])
-def employee():
+def employee(name=None):
     db = get_db()
     curs = db.cursor()
     curs.execute(
