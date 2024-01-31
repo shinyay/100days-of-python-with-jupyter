@@ -41,6 +41,17 @@ def close_db(exeception=None)
 def before_first_request():
     init_db()
 
+# GET all tasks
+@app.route('/tasks', methods=['GET'])
+def get_tasks():
+    db = get_db()
+    cursor = db.execute('SELECT * FROM tasks')
+    tasks = cursor.fetchall()
+    cursor.close()
+
+    task_list = [{'id': task['id'], 'title': task['title'], 'description': task['description'], 'done': task['done']} for task in tasks]
+    return jsonify({'tasks': task_list})
+    
 
 @app.route('/')
 def home():
