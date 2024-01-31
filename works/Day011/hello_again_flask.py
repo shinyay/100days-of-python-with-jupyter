@@ -36,6 +36,12 @@ def close_db(exeception=None)
     if db is not None:
         db.close()
 
+# Initiliaze Database before First Request
+@app.before_first_request
+def before_first_request():
+    init_db()
+
+
 @app.route('/')
 def home():
     return ('Hello, Flask!')
