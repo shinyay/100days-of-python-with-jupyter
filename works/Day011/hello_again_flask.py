@@ -20,24 +20,24 @@ def init_db():
     with app.app_context():
         db = get_db()
         db.execute('''
-            CREATE TABLE IF NOT EXIST tasks (
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   title TEXT NOT NULL,
-                   description TEXT,
-                   done BOOLEAN NOT NULL
+            CREATE TABLE IF NOT EXISTS tasks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                description TEXT,
+                done BOOLEAN NOT NULL
             )
                    ''')
         db.commit
 
 # Teardown to close the Database Connection
 @app.teardown_appcontext
-def close_db(exeception=None)
+def close_db(exeception=None):
     db = g.pop('db', None)
     if db is not None:
         db.close()
 
 # Initiliaze Database before First Request
-@app.before_first_request
+@app.before_request
 def before_first_request():
     init_db()
 
