@@ -6,6 +6,20 @@ from flask import g
 import sqlite3
 
 app = Flask(__name__)
+app.config['DATABASE'] = 'hello_sqlite3.db'
+
+# Connect Database
+def get_db():
+    if 'db' not in g:
+        g.db = sqlite3.connect(app.config['DATABASE'])
+        g.db.row_factory = sqlite3.Row
+    return g.db
+
+
+# Initilize Database
+def init_db():
+    with app.app_context():
+        db = 
 
 @app.route('/')
 def home():
