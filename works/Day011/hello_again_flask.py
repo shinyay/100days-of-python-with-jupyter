@@ -29,6 +29,13 @@ def init_db():
                    ''')
         db.commit
 
+# Teardown to close the Database Connection
+@app.teardown_appcontext
+def close_db(exeception=None)
+    db = g.pop('db', None)
+    if db is not None:
+        db.close()
+
 @app.route('/')
 def home():
     return ('Hello, Flask!')
