@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import render_template
+from flask import g
 
 app = Flask(__name__)
 
@@ -16,6 +17,8 @@ def hello(name):
 @app.route('/hello/template/<name>')
 def template(name):
     return render_template('/index.html', username=name)
+
+
 
 def main():
     app.run(debug=True)
