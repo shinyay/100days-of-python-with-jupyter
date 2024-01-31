@@ -15,11 +15,19 @@ def get_db():
         g.db.row_factory = sqlite3.Row
     return g.db
 
-
 # Initilize Database
 def init_db():
     with app.app_context():
-        db = 
+        db = get_db()
+        db.execute('''
+            CREATE TABLE IF NOT EXIST tasks (
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   title TEXT NOT NULL,
+                   description TEXT,
+                   done BOOLEAN NOT NULL
+            )
+                   ''')
+        db.commit
 
 @app.route('/')
 def home():
