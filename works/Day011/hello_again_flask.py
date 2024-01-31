@@ -8,6 +8,10 @@ app = Flask(__name__)
 def home():
     return ('Hello, Flask!')
 
+@app.route('/hello/<name>')
+def hello(name):    
+    return f'Hello, {name}!'
+
 def main():
     app.run(debug=True)
 
