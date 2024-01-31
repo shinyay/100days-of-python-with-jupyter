@@ -4,5 +4,12 @@ from flask import jsonify
 
 app = Flask(__name__)
 
-if __name__ == '__main__':
+@app.route('/')
+def home():
+    return ('Hello, Flask!')
+
+def main():
     app.run(debug=True)
+
+if __name__ == '__main__':
+    main()
