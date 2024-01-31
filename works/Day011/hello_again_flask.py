@@ -6,20 +6,33 @@ from flask import g
 import sqlite3
 
 app = Flask(__name__)
-app.config['DATABASE'] = 'hello_sqlite3.db'
+# app.config['DATABASE'] = 'hello_sqlite3.db'
 
 # Connect Database
 def get_db():
-    if 'db' not in g:
-        g.db = sqlite3.connect(app.config['DATABASE'])
-        g.db.row_factory = sqlite3.Row
-    return g.db
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect('hello_sqlite3.db')
+    return db
+
+    # if 'db' not in g:
+    #     g.db = sqlite3.connect(app.config['DATABASE'])
+    #     g.db.row_factory = sqlite3.Row
+    # return g.db
+
+# Close the Database Connection
+@app.teardown_appcontext
+def close_db(exeception=None):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
 
 # Initilize Database
 def init_db():
     with app.app_context():
         db = get_db()
-        db.execute('''
+        curs = db.cursor()
+        curs.execute('''
             CREATE TABLE IF NOT EXISTS tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
@@ -29,7 +42,7 @@ def init_db():
                    ''')
         db.commit
 
-@app.route('tasks', methods=['POST'])
+@app.route('/tasks', methods=['POST'])
 def create_task():
     data = request.get_json()
     title = data.get_json('title')
@@ -47,14 +60,6 @@ def create_task():
         'message': 'Task created successfully',\
         'id': new_task_id
         })
-
-
-# Teardown to close the Database Connection
-@app.teardown_appcontext
-def close_db(exeception=None):
-    db = g.pop('db', None)
-    if db is not None:
-        db.close()
 
 # Initiliaze Database before First Request
 @app.before_request
