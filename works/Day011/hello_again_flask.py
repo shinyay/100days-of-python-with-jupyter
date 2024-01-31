@@ -29,6 +29,26 @@ def init_db():
                    ''')
         db.commit
 
+@app.route('tasks', methods=['POST'])
+def create_task():
+    data = request.get_json()
+    title = data.get_json('title')
+    description = data.get_json('description')
+    done = data.get_json('done', False)
+
+    db = get_db()
+    cursor = db.execute('INSERT INTO tasks \
+                        (title, description, done) VALUES (?, ?, ?)', (title, description, done))
+    db.commit()
+
+    new_task_id = cursor.lastrowid
+    cursor.close()
+    return jsonify({
+        'message': 'Task created successfully',\
+        'id': new_task_id
+        })
+
+
 # Teardown to close the Database Connection
 @app.teardown_appcontext
 def close_db(exeception=None):
